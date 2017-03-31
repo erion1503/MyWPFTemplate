@@ -1,0 +1,40 @@
+﻿<Window x:Name="window" x:Class="MyWPFTemplate.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyWPFTemplate.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+        xmlns:vm="clr-namespace:MyWPFTemplate.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="300" WindowStyle="None" AllowsTransparency="True">
+    <WindowChrome.WindowChrome>
+        <WindowChrome />
+    </WindowChrome.WindowChrome>
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <i:Interaction.Triggers>
+            <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+                <l:WindowInteractionMessageAction/>
+            </l:InteractionMessageTrigger>
+            <l:InteractionMessageTrigger MessageKey="Minimize" Messenger="{Binding Messenger}">
+                <l:WindowInteractionMessageAction/>
+            </l:InteractionMessageTrigger>
+            <l:InteractionMessageTrigger MessageKey="Maximize" Messenger="{Binding Messenger}">
+                <l:WindowInteractionMessageAction/>
+            </l:InteractionMessageTrigger>
+            <l:InteractionMessageTrigger MessageKey="Normal" Messenger="{Binding Messenger}">
+                <l:WindowInteractionMessageAction/>
+            </l:InteractionMessageTrigger>
+        </i:Interaction.Triggers>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" WindowChrome.IsHitTestVisibleInChrome="True">
+            <Button Height="24" Width="24" Content="_" Command="{Binding MinimizeCommand, Mode=OneWay}"/>
+            <Button Height="24" Width="24" Content="❐" Command="{Binding ResizeCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=window, Mode=OneWay}"/>
+            <Button Height="24" Width="24" Content="X" Command="{Binding CloseCommand, Mode=OneWay}"/>
+        </StackPanel>
+    </Grid>
+</Window>
